@@ -55,8 +55,9 @@ To get started with this project locally, follow the instructions below:
    npm install
    ```
 3. Run the server:
-   ``bash
+   ```bash
    npm start
+   ```
 
 ### Set up the Django Backend:
 
