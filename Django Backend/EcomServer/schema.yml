@@ -1,0 +1,616 @@
+openapi: 3.0.3
+info:
+  title: E-Commerce API
+  version: 1.0.0
+  description: A simple E-Commerce API
+paths:
+  /api/contact:
+    post:
+      operationId: api_contact_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Email'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Email'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Email'
+        required: true
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+  /apiproducts:
+    get:
+      operationId: apiproducts_list
+      tags:
+      - apiproducts
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+          description: ''
+    post:
+      operationId: apiproducts_create
+      tags:
+      - apiproducts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+  /apiproducts/{id}:
+    get:
+      operationId: apiproducts_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - apiproducts
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+    put:
+      operationId: apiproducts_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - apiproducts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+    patch:
+      operationId: apiproducts_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - apiproducts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+    delete:
+      operationId: apiproducts_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - apiproducts
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /apiusers:
+    get:
+      operationId: apiusers_list
+      tags:
+      - apiusers
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+    post:
+      operationId: apiusers_create
+      tags:
+      - apiusers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /apiusers/{id}:
+    get:
+      operationId: apiusers_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - apiusers
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: apiusers_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - apiusers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: apiusers_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - apiusers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: apiusers_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - apiusers
+      security:
+      - jwtAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Email:
+      type: object
+      properties:
+        subject:
+          type: string
+          maxLength: 255
+        message:
+          type: string
+        from_email:
+          type: string
+          format: email
+      required:
+      - from_email
+      - message
+      - subject
+    PatchedProduct:
+      type: object
+      description: |-
+        Serializer for Documents.
+
+        Recognized primitve fields:
+
+            * ``StringField``
+            * ``URLField``
+            * ``EmailField``
+            * ``IntField``
+            * ``LongField``
+            * ``FloatField``
+            * ``DecimalField``
+            * ``BooleanField``
+            * ``DateTimeField``
+            * ``ComplexDateTimeField``
+            * ``ObjectIdField``
+            * ``SequenceField`` (assumes it has integer counter)
+            * ``UUIDField``
+            * ``GeoPointField``
+            * ``GeoJsonBaseField`` (all those fields)
+            * ``DateField``
+
+        Compound fields: ``ListField`` and ``DictField`` are mapped to corresponding DRF fields, with respect to nested field specification.
+
+        The ``ReferenceField`` is handled like ``ForeignKey`` in DRF: there nested serializer autogenerated if serializer depth greater then 0, otherwise it's handled by it's own (results as ``str(id)``).
+
+        For ``EmbeddedDocumentField`` also nested serializer autogenerated for non-zero depth, otherwise it is skipped. TODO: THIS IS PROBABLY WRONG AND SHOULD BE FIXED.
+
+        Generic fields ``GenericReferenceField`` and ``GenericEmbeddedDocumentField`` are handled by their own with corresponding serializer fields.
+
+        Not well supported or untested:
+
+            ``FileField``
+            ``ImageField``
+            ``BinaryField``
+
+        All other fields are mapped to ``DocumentField`` and probably will work wrong.
+      properties:
+        id:
+          type: string
+          readOnly: true
+        productName:
+          type: string
+        des:
+          type: string
+        price:
+          type: number
+          format: double
+        color:
+          type: string
+        badge:
+          type: boolean
+        imageUrl:
+          type: string
+    PatchedUser:
+      type: object
+      description: |-
+        Serializer for Documents.
+
+        Recognized primitve fields:
+
+            * ``StringField``
+            * ``URLField``
+            * ``EmailField``
+            * ``IntField``
+            * ``LongField``
+            * ``FloatField``
+            * ``DecimalField``
+            * ``BooleanField``
+            * ``DateTimeField``
+            * ``ComplexDateTimeField``
+            * ``ObjectIdField``
+            * ``SequenceField`` (assumes it has integer counter)
+            * ``UUIDField``
+            * ``GeoPointField``
+            * ``GeoJsonBaseField`` (all those fields)
+            * ``DateField``
+
+        Compound fields: ``ListField`` and ``DictField`` are mapped to corresponding DRF fields, with respect to nested field specification.
+
+        The ``ReferenceField`` is handled like ``ForeignKey`` in DRF: there nested serializer autogenerated if serializer depth greater then 0, otherwise it's handled by it's own (results as ``str(id)``).
+
+        For ``EmbeddedDocumentField`` also nested serializer autogenerated for non-zero depth, otherwise it is skipped. TODO: THIS IS PROBABLY WRONG AND SHOULD BE FIXED.
+
+        Generic fields ``GenericReferenceField`` and ``GenericEmbeddedDocumentField`` are handled by their own with corresponding serializer fields.
+
+        Not well supported or untested:
+
+            ``FileField``
+            ``ImageField``
+            ``BinaryField``
+
+        All other fields are mapped to ``DocumentField`` and probably will work wrong.
+      properties:
+        id:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        fullName:
+          type: string
+        phoneNumber:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        zip:
+          type: string
+        is_admin:
+          type: boolean
+    Product:
+      type: object
+      description: |-
+        Serializer for Documents.
+
+        Recognized primitve fields:
+
+            * ``StringField``
+            * ``URLField``
+            * ``EmailField``
+            * ``IntField``
+            * ``LongField``
+            * ``FloatField``
+            * ``DecimalField``
+            * ``BooleanField``
+            * ``DateTimeField``
+            * ``ComplexDateTimeField``
+            * ``ObjectIdField``
+            * ``SequenceField`` (assumes it has integer counter)
+            * ``UUIDField``
+            * ``GeoPointField``
+            * ``GeoJsonBaseField`` (all those fields)
+            * ``DateField``
+
+        Compound fields: ``ListField`` and ``DictField`` are mapped to corresponding DRF fields, with respect to nested field specification.
+
+        The ``ReferenceField`` is handled like ``ForeignKey`` in DRF: there nested serializer autogenerated if serializer depth greater then 0, otherwise it's handled by it's own (results as ``str(id)``).
+
+        For ``EmbeddedDocumentField`` also nested serializer autogenerated for non-zero depth, otherwise it is skipped. TODO: THIS IS PROBABLY WRONG AND SHOULD BE FIXED.
+
+        Generic fields ``GenericReferenceField`` and ``GenericEmbeddedDocumentField`` are handled by their own with corresponding serializer fields.
+
+        Not well supported or untested:
+
+            ``FileField``
+            ``ImageField``
+            ``BinaryField``
+
+        All other fields are mapped to ``DocumentField`` and probably will work wrong.
+      properties:
+        id:
+          type: string
+          readOnly: true
+        productName:
+          type: string
+        des:
+          type: string
+        price:
+          type: number
+          format: double
+        color:
+          type: string
+        badge:
+          type: boolean
+        imageUrl:
+          type: string
+      required:
+      - badge
+      - color
+      - des
+      - id
+      - imageUrl
+      - price
+      - productName
+    User:
+      type: object
+      description: |-
+        Serializer for Documents.
+
+        Recognized primitve fields:
+
+            * ``StringField``
+            * ``URLField``
+            * ``EmailField``
+            * ``IntField``
+            * ``LongField``
+            * ``FloatField``
+            * ``DecimalField``
+            * ``BooleanField``
+            * ``DateTimeField``
+            * ``ComplexDateTimeField``
+            * ``ObjectIdField``
+            * ``SequenceField`` (assumes it has integer counter)
+            * ``UUIDField``
+            * ``GeoPointField``
+            * ``GeoJsonBaseField`` (all those fields)
+            * ``DateField``
+
+        Compound fields: ``ListField`` and ``DictField`` are mapped to corresponding DRF fields, with respect to nested field specification.
+
+        The ``ReferenceField`` is handled like ``ForeignKey`` in DRF: there nested serializer autogenerated if serializer depth greater then 0, otherwise it's handled by it's own (results as ``str(id)``).
+
+        For ``EmbeddedDocumentField`` also nested serializer autogenerated for non-zero depth, otherwise it is skipped. TODO: THIS IS PROBABLY WRONG AND SHOULD BE FIXED.
+
+        Generic fields ``GenericReferenceField`` and ``GenericEmbeddedDocumentField`` are handled by their own with corresponding serializer fields.
+
+        Not well supported or untested:
+
+            ``FileField``
+            ``ImageField``
+            ``BinaryField``
+
+        All other fields are mapped to ``DocumentField`` and probably will work wrong.
+      properties:
+        id:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        fullName:
+          type: string
+        phoneNumber:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        zip:
+          type: string
+        is_admin:
+          type: boolean
+      required:
+      - email
+      - id
+      - password
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
